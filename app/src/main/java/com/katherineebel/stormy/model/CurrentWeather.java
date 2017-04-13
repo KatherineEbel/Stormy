@@ -1,5 +1,10 @@
 package com.katherineebel.stormy.model;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * Created by kathyebel on 4/13/17.
  */
@@ -11,61 +16,77 @@ public class CurrentWeather {
     private double mHumidity;
     private double mPrecipChance;
     private String mSummary;
+    private String mTimeZone;
 
-    public CurrentWeather(String mIcon, long mTime, double mTemperature, double mHumidity, double mPrecipChance, String mSummary) {
-        this.mIcon = mIcon;
-        this.mTime = mTime;
-        this.mTemperature = mTemperature;
-        this.mHumidity = mHumidity;
-        this.mPrecipChance = mPrecipChance;
-        this.mSummary = mSummary;
+    public CurrentWeather(String icon, long time, double temperature, double humidity, double precipChance, String summary, String timeZone) {
+        this.mIcon = icon;
+        this.mTime = time;
+        this.mTemperature = temperature;
+        this.mHumidity = humidity;
+        this.mPrecipChance = precipChance;
+        this.mSummary = summary;
     }
 
-    public String getmIcon() {
+    public String getIcon() {
         return mIcon;
     }
 
-    public void setmIcon(String mIcon) {
-        this.mIcon = mIcon;
+    public void setIcon(String icon) {
+        this.mIcon = icon;
     }
 
-    public long getmTime() {
+    public String getFormattedtime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        formatter.setTimeZone(TimeZone.getTimeZone(getTimeZone()));
+        Date dateTime = new Date(getTime() * 1000);
+        return formatter.format(dateTime);
+    }
+
+    public long getTime() {
         return mTime;
     }
 
-    public void setmTime(long mTime) {
-        this.mTime = mTime;
+    public void setTime(long time) {
+        this.mTime = time;
     }
 
-    public double getmTemperature() {
+    public double getTemperature() {
         return mTemperature;
     }
 
-    public void setmTemperature(double mTemperature) {
-        this.mTemperature = mTemperature;
+    public void setTemperature(double temperature) {
+        this.mTemperature = temperature;
     }
 
-    public double getmHumidity() {
+    public double getHumidity() {
         return mHumidity;
     }
 
-    public void setmHumidity(double mHumidity) {
-        this.mHumidity = mHumidity;
+    public void setHumidity(double humidity) {
+        this.mHumidity = humidity;
     }
 
-    public double getmPrecipChance() {
+    public double getPrecipChance() {
         return mPrecipChance;
     }
 
-    public void setmPrecipChance(double mPrecipChance) {
-        this.mPrecipChance = mPrecipChance;
+    public void setPrecipChance(double precipChance) {
+        this.mPrecipChance = precipChance;
     }
 
-    public String getmSummary() {
+    public String getSummary() {
         return mSummary;
     }
 
-    public void setmSummary(String mSummary) {
-        this.mSummary = mSummary;
+    public void setmSummary(String summary) {
+        this.mSummary = summary;
+    }
+
+    public String getTimeZone() {
+        return mTimeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        mTimeZone = timeZone;
     }
 }

@@ -1,4 +1,4 @@
-package com.katherineebel.stormy;
+package com.katherineebel.stormy.ui;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -13,7 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.katherineebel.stormy.model.CurrentWeather;
+import com.katherineebel.stormy.R;
+import com.katherineebel.stormy.model.Current;
+import com.katherineebel.stormy.model.Forecast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +33,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private CurrentWeather mCurrentWeather;
+    private Current mCurrent;
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
     @BindView(R.id.refreshImageView)
@@ -70,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void getForecast(double latitude, double longitude) {
         String apiKey = "bbc404aa1b0ff47e85a6c535d3471b80";
-//        double latitude = 37.8267;
-//        double longitude = -122.4233;
         String forecastUrl = "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
 
         if (isNetworkAvailable()) {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         String jsonData = response.body().string();
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
-                            mCurrentWeather = getCurrentDetails(jsonData);
+                            mCurrent = getCurrentDetails(jsonData);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -139,20 +139,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        mTemperatureLabel.setText(mCurrentWeather.getTemperature() + "");
-        mTimeLabel.setText("At " + mCurrentWeather.getFormattedtime() + "" + " it will be:");
-        mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
-        mPrecipChanceValue.setText(mCurrentWeather.getPrecipChance() + " %");
-        mSummaryTextValue.setText(mCurrentWeather.getSummary());
-        Drawable drawable = getResources().getDrawable(mCurrentWeather.getIconId());
+        mTemperatureLabel.setText(mCurrent.getTemperature() + "");
+        mTimeLabel.setText("At " + mCurrent.getFormattedtime() + "" + " it will be:");
+        mHumidityValue.setText(mCurrent.getHumidity() + "");
+        mPrecipChanceValue.setText(mCurrent.getPrecipChance() + " %");
+        mSummaryTextValue.setText(mCurrent.getSummary());
+        Drawable drawable = getResources().getDrawable(mCurrent.getIconId());
         mIconImageView.setImageDrawable(drawable);
     }
 
-    private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
+    private Current getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         JSONObject currently = forecast.getJSONObject("currently");
         //string icon, long time, double temp, double humidity, double precip, string summary
-        CurrentWeather weather = new CurrentWeather(
+        Current weather = new Current(
                 currently.getString("icon"),
                 currently.getLong("time"),
                 currently.getDouble("temperature"),

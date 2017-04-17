@@ -1,10 +1,12 @@
-package com.katherineebel.stormy;
+package com.katherineebel.stormy.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+
+import com.katherineebel.stormy.R;
 
 /**
  * Created by kathyebel on 4/12/17.

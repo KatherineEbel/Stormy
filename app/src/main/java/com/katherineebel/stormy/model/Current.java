@@ -11,7 +11,7 @@ import java.util.TimeZone;
  * Created by kathyebel on 4/13/17.
  */
 
-public class CurrentWeather {
+public class Current {
     private String mIcon;
     private long mTime;
     private double mTemperature;
@@ -20,7 +20,7 @@ public class CurrentWeather {
     private String mSummary;
     private String mTimeZone;
 
-    public CurrentWeather(String icon, long time, double temperature, double humidity, double precipChance, String summary, String timeZone) {
+    public Current(String icon, long time, double temperature, double humidity, double precipChance, String summary, String timeZone) {
         this.mIcon = icon;
         this.mTime = time;
         this.mTemperature = temperature;

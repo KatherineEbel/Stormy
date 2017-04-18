@@ -4,10 +4,10 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             android:background="#fc970b"
+                                             android:background="@drawable/bg_gradient"
                                              tools:context="com.katherineebel.stormy.ui.MainActivity"
-                                             tools:layout_editor_absoluteY="25dp"
-                                             tools:layout_editor_absoluteX="0dp">
+                                             tools:layout_editor_absoluteX="0dp"
+                                             tools:layout_editor_absoluteY="25dp">
 
     <TextView
         android:id="@+id/temperatureLabel"
@@ -53,39 +53,39 @@
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/timeLabel"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <ImageView
         android:id="@+id/iconImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/locationLabel"
-        app:srcCompat="@drawable/cloudy_night"
-        app:layout_constraintRight_toLeftOf="@+id/locationLabel"
+        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"/>
+        app:layout_constraintBottom_toBottomOf="@+id/locationLabel"
+        app:layout_constraintRight_toLeftOf="@+id/locationLabel"
+        app:srcCompat="@drawable/cloudy_night"/>
 
     <TextView
         android:id="@+id/humidityLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="HUMIDITY"
         android:textColor="@color/translucent_white"
-        app:layout_constraintRight_toLeftOf="@+id/precipChanceLabel"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/precipChanceLabel"
         app:layout_constraintTop_toBottomOf="@+id/temperatureLabel"/>
 
     <TextView
         android:id="@+id/precipChanceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="RAIN?"
         android:textColor="@color/translucent_white"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/humidityLabel"
-        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperatureLabel"/>
 
     <TextView
@@ -119,6 +119,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
+        android:paddingBottom="16dp"
         android:text="Getting current weather . . ."
         android:textColor="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -129,20 +130,48 @@
         android:id="@+id/refreshImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/refresh"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="18dp"
+        app:layout_constraintLeft_toLeftOf="@+id/progressBar"
         app:layout_constraintRight_toRightOf="@+id/progressBar"
-        app:layout_constraintLeft_toLeftOf="@+id/progressBar"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/refresh"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/hourlyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#40ffffff"
+        android:paddingBottom="0dp"
+        android:text="Hourly"
+        android:textColor="#ffffffff"
+        app:layout_constraintRight_toLeftOf="@+id/dailyButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/summaryTextValue"/>
+
+    <Button
+        android:id="@+id/dailyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#40ffffff"
+        android:paddingBottom="0dp"
+        android:text="7 Day"
+        android:textColor="#ffffffff"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/hourlyButton"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/summaryTextValue"/>
 
 </android.support.constraint.ConstraintLayout>
